@@ -9,16 +9,22 @@ const removeNotes = function (title) {
   saveNotes(notesToKeep);
   console.log("Removing....", remove);
 };
-
+const listNotes = () => {
+  const notes = getNotes();
+  notes.forEach((note) => console.log("Title :: ", note.title));
+};
 const addNote = (title, body) => {
   console.log("Into AddNote Method of notes.js file");
 
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((note) => note.title === title);
+  const duplicateNotes = notes.find((note) => note.title === title);
 
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNotes) {
     notes.push({ title: title, body: body });
     saveNotes(notes);
+    console.log("New Note Added!");
+  } else {
+    console.log("Note Title Already Exists");
   }
 };
 // // Save Notes
@@ -41,4 +47,5 @@ module.exports = {
   getNotes: getNotes,
   addNote: addNote,
   removeNotes: removeNotes,
+  listNotes: listNotes,
 };
