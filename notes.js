@@ -1,21 +1,32 @@
+//const chalk = require("require")
 const fs = require("fs");
 
 const getNotes = function () {};
-
-const addNote = function (title, body) {
+//Remove Notes
+const removeNotes = function (title) {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((note) => {
-    return note.title === title;
-  });
+  const notesToKeep = notes.filter((note) => note.title !== title);
+  saveNotes(notesToKeep);
+  console.log("Removing....", remove);
+};
+
+const addNote = (title, body) => {
+  console.log("Into AddNote Method of notes.js file");
+
+  const notes = loadNotes();
+  const duplicateNotes = notes.filter((note) => note.title === title);
+
   if (duplicateNotes.length === 0) {
     notes.push({ title: title, body: body });
     saveNotes(notes);
   }
 };
+// // Save Notes
 const saveNotes = function (notes) {
   const dataJson = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJson);
 };
+// Save Load Notes
 const loadNotes = function () {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
@@ -29,4 +40,5 @@ const loadNotes = function () {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
+  removeNotes: removeNotes,
 };

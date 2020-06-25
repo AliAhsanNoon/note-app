@@ -7,7 +7,19 @@ yargs.version("1.1.0");
 yargs.command({
   command: "add",
   describe: "Add a new note",
-  handler: function (argv) {
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+    body: {
+      describe: "Note body",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
     notes.addNote(argv.title, argv.body);
   }
 });
@@ -15,9 +27,16 @@ yargs.command({
 yargs.command({
   command: "remove",
   describe: "Remove notes from app list",
-  handler: function () {
-    console.log("Removing note from note-app list");
-  }
+  builder: {
+    title: {
+      describe: " Remove Note Title ",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    notes.removeNotes(argv.title);
+  },
 });
 
 yargs.command({
@@ -26,22 +45,16 @@ yargs.command({
   builder: {
     title: {
       describe: " Note Title ",
-      demaandOption: true,
+      demandOption: true,
       type: "string",
     },
     body: {
       describe: " Note Body ",
-      demaandOption: true,
+      demandOption: true,
       type: "string",
-    }
+    },
   },
-  handler: function () {
+  handler: () => {
     console.log("Retreving lists from note-app list");
   },
 });
-
-console.log(yargs.argv);
-
-let msg = chalk.green.inverse.bold("Success");
-
-console.log(msg);
