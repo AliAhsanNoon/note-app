@@ -1,0 +1,20 @@
+{
+  "name": "note-app",
+  "version": "1.0.0",
+  "description": "Learn Nodejs by building note-app",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "Javascript"
+  ],
+  "author": "Ali Ahsan Noon",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "nodemon": "^2.0.4",
+    "yargs": "^15.3.1"
+  }
+}
